@@ -17,6 +17,10 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 var app = builder.Build();
 
+var database = app.Services.CreateScope().ServiceProvider.GetService<DatabaseContext>();
+await database!.Database.MigrateAsync();
+database.Dispose();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
