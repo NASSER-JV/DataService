@@ -1,0 +1,4 @@
+/DataService/bin/
+obj/
+/DataService/Docker/data
+.idea
