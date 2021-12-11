@@ -2,6 +2,9 @@
 WORKDIR /app
 EXPOSE 8080
 ENV TZ=America/Sao_Paulo
+ENV LANG pt_BR.UTF-8
+ENV LANGUAGE ${LANG}
+ENV LC_ALL ${LANG}
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
