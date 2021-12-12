@@ -19,6 +19,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<Noticia> Noticias { get; set; } = null!;
     public virtual DbSet<NoticiaAnalise> NoticiasAnalise { get; set; } = null!;
     public virtual DbSet<Ticker> Tickers { get; set; } = null!;
+    public virtual DbSet<Tarefa> Tarefas { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -153,6 +154,29 @@ public class DatabaseContext : DbContext
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
                 .HasColumnName("nome");
+        });
+
+        modelBuilder.Entity<Tarefa>(entity =>
+        {
+            entity.HasKey(e => e.Id)
+                .HasName("tarefas_pkey");
+
+            entity.ToTable("tarefas");
+
+            entity.Property(e => e.Tipo)
+                .HasColumnName("tipo");
+
+            entity.Property(e => e.Tickers)
+                .HasColumnName("tickers");
+
+            entity.Property(e => e.DataInicial)
+                .HasColumnName("data_inicial");
+
+            entity.Property(e => e.DataFinal)
+                .HasColumnName("data_final");
+
+            entity.Property(e => e.Finalizado)
+                .HasColumnName("finalizado");
         });
     }
 }
